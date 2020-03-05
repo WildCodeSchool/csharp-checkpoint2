@@ -12,6 +12,14 @@ namespace WCSTest
 		{
 			_planning = new Planning();
 		}
+
+		public void TestGetPostponed()
+		{
+			Event event = CreateDelayedEvent();
+			event.Postpone(TimeSpan.FromHours(1));
+
+			Assert.AreEqual(1, _planning.PostponedEvents.Count);
+		}
 	}
 }
 
