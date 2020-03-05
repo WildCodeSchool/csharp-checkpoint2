@@ -8,11 +8,12 @@ namespace WCSTest
 		public void TestEventPostponed()
 		{
 			Event presentEvent = ApiTest.CreateDelayedEvent();
-			DateTime dateBeforePostpone = DateTime.Now + presentEvent.Delay;
+			DateTime startDateBeforePostpone = presentEvent.StartDate;
+			DateTime endDateDateBeforePostpone = presentEvent.EndDate;
 			presentEvent.Postpone(TimeSpan.FromDays(1));
-			DateTime dateAfterPostpone = dateBeforePostpone + presentEvent.Delay;
 
-			Assert.AreEqual(dateBeforePostpone, dateAfterPostpone - TimeSpan.FromDays(1));
+			Assert.AreEqual(startDateBeforePostpone, presentEvent.StartDate - TimeSpan.FromDays(1));
+			Assert.AreEqual(endDateBeforePostpone, presentEvent.EndDate - TimeSpan.FromDays(1));
 		}
 
 		[Test]
